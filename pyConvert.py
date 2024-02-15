@@ -7,13 +7,14 @@ def converter(option, value):
         - value (float): The value to be converted.
          Prints the converted value with appropriate unit.
         """
-
-    if option == (" cm vers pouce") :
+    if option == "cm vers pouce":
         result = cm_to_inch(value)
-        print("le resultat est " + str(result) + " pouce")
-    elif option == ("pouce vers cm") :
+        print("Le resultat est " + str(result) + " pouce")
+    elif option == "pouce vers cm":
         result = inch_to_cm(value)
-        print("le resultat est " + str(result) + " cm")
+        print("Le resultat est " + str(result) + " cm")
+    else:
+        print("Option invalide. Veuillez saisir 'cm vers pouce' ou 'pouce vers cm'. ")
 
 def cm_to_inch(value):
     """
@@ -46,7 +47,7 @@ if __name__ == "__main__":
     elif option == int:
         option = input("veillez saisir la bonne conversion")
 
-    value_to_convert = float (input("saisissez le nombre à convertir:"))
+    value_to_convert = float(input("saisissez le nombre à convertir:"))
 
     if value_to_convert == " ":
         value_to_convert = input("veillez saisir un nombre")
