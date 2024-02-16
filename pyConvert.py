@@ -8,13 +8,13 @@ def converter(option, value):
          Prints the converted value with appropriate unit.
         """
     validate_value(value)
-    if option not in ["cm vers pouce", "pouce vers cm"]:
+    if option not in [1,2]:
         raise ValueError("Option invalide...")
 
-    if option == "cm vers pouce":
+    if option == 1:
         result = cm_to_inch(value)
         print("Le resultat est " + str(result) + " pouce")
-    elif option == "pouce vers cm":
+    elif option == 2:
         result = inch_to_cm(value)
         print("Le resultat est " + str(result) + " cm")
 
@@ -57,11 +57,26 @@ def validate_value(value):
         raise ValueError("La valeur ne peut pas être négative")
 
 
+def get_option_label(option):
+    if option == 1:
+        return "cm vers pouce"
+    elif option == 2:
+        return "pouce vers cm"
+
 if __name__ == "__main__":
     value_to_convert = None
-    option = input("souhaitez vous convertir pouce vers cm ou cm vers  pouce?")
-    while option not in ["cm vers pouce", "pouce vers cm"]:
-        option = input("Veuillez saisir la bonne conversion entre:  pouce vers cm ou cm vers  pouce")
+    option = None
+
+    print("Bienvenu dans votre programme convertisseur pouce")
+    print("Programme: \n Option 1 ===> pouce vers cm \n Option 2 ===> cm vers pouce ")
+
+    while option not in [1, 2]:
+        try:
+            option = int(input("Saisissez votre choix [1/2]"))
+            if option not in [1, 2]:
+                print("L'option choisie n'est pas valide.\n Veuillez saisir  entre 1 et 2 .")
+        except ValueError:
+            print("L'option choisie n'est pas valide.\n Veuillez saisir  entre 1 et 2 .")
 
     while not isinstance(value_to_convert, (int, float)):
         try:
@@ -69,7 +84,7 @@ if __name__ == "__main__":
         except ValueError:
             print("La valeur saisie n'est pas valide. Veuillez saisir un nombre.")
 
-    print("Vous souhaitez convertir de " + option)
+    print("Vous souhaitez convertir de " + get_option_label(option))
 
     try:
         converter(option, value_to_convert)
